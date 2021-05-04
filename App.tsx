@@ -29,6 +29,8 @@ export default function App() {
     "34g34",
     "sasasa",
   ];
+  const verticalLength = arr.length / 3;
+  const height = verticalLength * (width * 0.2 + (width * 0.4) / 3);
   return (
     <View style={styles.container}>
       <InfiniteScroll width={width} height={height}>
