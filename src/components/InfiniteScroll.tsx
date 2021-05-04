@@ -18,7 +18,7 @@ interface InfiniteScrollProps {
   height: number;
 }
 
-interface BallProps {
+interface WrapperProps {
   children?: React.ReactNode;
   scrollX: Animated.SharedValue<number>;
   scrollY: Animated.SharedValue<number>;
@@ -30,7 +30,7 @@ interface BallProps {
   height: number;
 }
 
-const Wrapper = (props: BallProps) => {
+const Wrapper = (props: WrapperProps) => {
   const { index, children, scrollX, scrollY, width, height } = props;
   /*   const w = useSharedValue<number>(1);
   const h = useSharedValue<number>(1); */
