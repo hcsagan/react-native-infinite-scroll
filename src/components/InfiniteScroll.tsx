@@ -54,6 +54,7 @@ const Wrapper = (props: WrapperProps) => {
           translateY: scrollY.value % height,
         },
       ],
+      overflow: "hidden",
     };
   });
 
@@ -61,10 +62,8 @@ const Wrapper = (props: WrapperProps) => {
     <Animated.View style={wrapperStyle}>
       <View
         style={{
-          minHeight: height,
-          minWidth: width,
-          flexDirection: "row",
-          flexWrap: "wrap",
+          height,
+          width,
         }}
       >
         {children}
@@ -106,7 +105,6 @@ export default (props: InfiniteScrollProps) => {
       cancelAnimation(scrollY);
     },
   });
-  const wrapperSize = useSharedValue<{ x: number; y: number }>({ x: 0, y: 0 });
   const wrapperStyle = useAnimatedStyle(() => ({
     width: props.width,
     height: props.height,
@@ -115,15 +113,7 @@ export default (props: InfiniteScrollProps) => {
 
   return (
     <PanGestureHandler {...{ onGestureEvent }} key="a">
-      <Animated.View
-        style={wrapperStyle}
-        onLayout={(e) => {
-          wrapperSize.value = {
-            x: e.nativeEvent.layout.width,
-            y: e.nativeEvent.layout.height,
-          };
-        }}
-      >
+      <Animated.View style={wrapperStyle}>
         {["0", "1", "2", "3"].map((k, i) => (
           <Wrapper
             key={k}
